@@ -9,6 +9,8 @@
 // @match https://8ch.net/*
 // @match http://boards.4chan.org/*
 // @match https://boards.4chan.org/*
+// @match http://boards.4channel.org/*
+// @match https://boards.4channel.org/*
 // @match http://duckduckgo.com/*
 // @match https://duckduckgo.com/*
 // @match http://endchan.org/*
