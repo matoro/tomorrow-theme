@@ -47,7 +47,7 @@ switch(window.location.hostname)
     };
     break;
   case "boards.4chan.org":
-  case "boards.4chan.org":
+  case "boards.4channel.org":
     window.onload = function() {
       var style = document.getElementById("styleSelector");
       style.value = "Tomorrow";
