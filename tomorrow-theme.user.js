@@ -42,16 +42,22 @@ switch(window.location.hostname)
   case "8ch.net":
     window.onload = function() {
       var style = document.getElementById("stylechooser");
-      style.value = "Tomorrow";
-      style.dispatchEvent(new Event("change"));
+      if(style.value !== "Tomorrow")
+      {
+        style.value = "Tomorrow";
+        style.dispatchEvent(new Event("change"));
+      }
     };
     break;
   case "boards.4chan.org":
   case "boards.4channel.org":
     window.onload = function() {
       var style = document.getElementById("styleSelector");
-      style.value = "Tomorrow";
-      style.dispatchEvent(new Event("change"));
+      if(style.value !== "Tomorrow")
+      {
+        style.value = "Tomorrow";
+        style.dispatchEvent(new Event("change"));
+      }
     };
     break;
   case "duckduckgo.com":
