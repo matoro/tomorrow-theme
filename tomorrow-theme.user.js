@@ -15,6 +15,8 @@
 // @match https://duckduckgo.com/*
 // @match http://endchan.org/*
 // @match https://endchan.org/*
+// @match http://nyaa.si/*
+// @match https://nyaa.si/*
 // @match http://wizchan.org/*
 // @match https://wizchan.org/*
 // @grant none
@@ -82,6 +84,12 @@ switch(window.location.hostname)
     break;
   case "endchan.org":
     chooseStyle("Darkend", "color");
+    break;
+  case "nyaa.si":
+    if(document.body.classname !== "dark")
+    {
+      toggleDarkMode();
+    }
     break;
   case "wizchan.org":
     var style = document.getElementById("style-select");
