@@ -15,10 +15,14 @@
 // @match https://duckduckgo.com/*
 // @match http://endchan.org/*
 // @match https://endchan.org/*
-// @match http://nyaa.si/*
-// @match https://nyaa.si/*
 // @match http://wizchan.org/*
 // @match https://wizchan.org/*
+// @match http://youtu.be/*
+// @match https://youtu.be/*
+// @match http://youtube.com/*
+// @match https://youtube.com/*
+// @match http://www.youtube.com/*
+// @match https://www.youtube.com/*
 // @grant none
 // @version 0.1
 // @updateURL https://raw.githubusercontent.com/matoro/tomorrow-theme/master/tomorrow-theme.user.js
@@ -39,63 +43,51 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-switch(window.location.hostname)
-{
-  case "8ch.net":
-    window.onload = function() {
-      var style = document.getElementById("stylechooser");
-      if(style.value !== "Tomorrow")
-      {
+window.onload = function() {
+  switch(window.location.hostname)
+  {
+    case "8ch.net":
+        var style = document.getElementById("stylechooser");
         style.value = "Tomorrow";
         style.dispatchEvent(new Event("change"));
-      }
-    };
-    break;
-  case "boards.4chan.org":
-  case "boards.4channel.org":
-    window.onload = function() {
-      var style = document.getElementById("styleSelector");
-      if(style.value !== "Tomorrow")
-      {
+      break;
+    case "boards.4chan.org":
+    case "boards.4channel.org":
+        var style = document.getElementById("styleSelector");
         style.value = "Tomorrow";
         style.dispatchEvent(new Event("change"));
-      }
-    };
-    break;
-  case "duckduckgo.com":
-    window.onload = function() {
-      var current_style = document.getElementsByClassName("nav-menu__theme  js-side-menu-theme theme-is-selected")[0];
-      if(current_style.children[0].children[0].getAttribute("style") !== "background-color:#444;"
-        || current_style.children[0].children[1].getAttribute("style") !== "background-color:#222;")
-      {
-        var style = null;
-        var styles = document.getElementsByClassName("nav-menu__theme  js-side-menu-theme");
-        for(var ticker = 0; ticker < styles.length && style === null; ticker++)
+      break;
+    case "duckduckgo.com":
+        var current_style = document.getElementsByClassName("nav-menu__theme  js-side-menu-theme theme-is-selected")[0];
+        if(current_style.children[0].children[0].getAttribute("style") !== "background-color:#444;"
+          || current_style.children[0].children[1].getAttribute("style") !== "background-color:#222;")
         {
-          if(styles[ticker].children[0].children[0].getAttribute("style") === "background-color:#444;"
-            && styles[ticker].children[0].children[1].getAttribute("style") === "background-color:#222;")
+          var style = null;
+          var styles = document.getElementsByClassName("nav-menu__theme  js-side-menu-theme");
+          for(var ticker = 0; ticker < styles.length && style === null; ticker++)
           {
-             style = styles[ticker];
+            if(styles[ticker].children[0].children[0].getAttribute("style") === "background-color:#444;"
+              && styles[ticker].children[0].children[1].getAttribute("style") === "background-color:#222;")
+            {
+               style = styles[ticker];
+            }
           }
+          style.click();
         }
-        style.click();
-      }
-    };
-    break;
-  case "endchan.org":
-    chooseStyle("Darkend", "color");
-    break;
-  case "nyaa.si":
-    if(document.body.classname !== "dark")
-    {
-      toggleDarkMode();
-    }
-    break;
-  case "wizchan.org":
-    var style = document.getElementById("style-select");
-    style.childNodes.value = "10";
-    style.childNodes[1].dispatchEvent(new Event("change"));
-    break;
-  default:
-    break;
+      break;
+    case "endchan.org":
+      chooseStyle("Darkend", "color");
+      break;
+    case "wizchan.org":
+      var style = document.getElementById("style-select");
+      style.childNodes.value = "10";
+      style.childNodes[1].dispatchEvent(new Event("change"));
+      break;
+    case "youtu.be":
+    case "youtube.com":
+    case "www.youtube.com":
+      break;
+    default:
+      break;
+  }
 }
