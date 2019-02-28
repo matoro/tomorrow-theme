@@ -15,6 +15,8 @@
 // @match https://duckduckgo.com/*
 // @match http://endchan.org/*
 // @match https://endchan.org/*
+// @match http://tvtropes.org/*
+// @match https://tvtropes.org/*
 // @match http://wizchan.org/*
 // @match https://wizchan.org/*
 // @match http://youtu.be/*
@@ -77,6 +79,13 @@ window.onload = function() {
       break;
     case "endchan.org":
       chooseStyle("Darkend", "color");
+      break;
+    case "tvtropes.org":
+      var style = document.getElementById("sidebar-toggle-nightvision");
+      if(!Array.from(style.classList).includes("active"))
+      {
+        style.click();
+      }
       break;
     case "wizchan.org":
       var style = document.getElementById("style-select");
