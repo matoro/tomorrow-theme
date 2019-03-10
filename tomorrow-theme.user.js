@@ -11,6 +11,8 @@
 // @match https://boards.4chan.org/*
 // @match http://boards.4channel.org/*
 // @match https://boards.4channel.org/*
+// @match http://docs.microsoft.com/*
+// @match https://docs.microsoft.com/*
 // @match http://duckduckgo.com/*
 // @match https://duckduckgo.com/*
 // @match http://endchan.org/*
@@ -26,7 +28,7 @@
 // @match http://www.youtube.com/*
 // @match https://www.youtube.com/*
 // @grant none
-// @version 0.1
+// @version 0.1.001
 // @updateURL https://raw.githubusercontent.com/matoro/tomorrow-theme/master/tomorrow-theme.user.js
 // ==/UserScript==
  
@@ -59,6 +61,13 @@ window.onload = function() {
         style.value = "Tomorrow";
         style.dispatchEvent(new Event("change"));
       break;
+    case "docs.microsoft.com":
+        var style = document.getElementsByClassName("toggle-theme")[0];
+        if(style.getAttribute("data-theme-to") === "dark")
+        {
+          style.click();
+        }
+        break;
     case "duckduckgo.com":
         var current_style = document.getElementsByClassName("nav-menu__theme  js-side-menu-theme theme-is-selected")[0];
         if(current_style.children[0].children[0].getAttribute("style") !== "background-color:#444;"
