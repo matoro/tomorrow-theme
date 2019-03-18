@@ -28,7 +28,7 @@
 // @match http://www.youtube.com/*
 // @match https://www.youtube.com/*
 // @grant none
-// @version 0.1.001
+// @version 0.1.002
 // @updateURL https://raw.githubusercontent.com/matoro/tomorrow-theme/master/tomorrow-theme.user.js
 // ==/UserScript==
  
@@ -51,40 +51,43 @@ window.onload = function() {
   switch(window.location.hostname)
   {
     case "8ch.net":
-        var style = document.getElementById("stylechooser");
-        style.value = "Tomorrow";
-        style.dispatchEvent(new Event("change"));
+      var style = document.getElementById("stylechooser");
+      style.value = "Tomorrow";
+      style.dispatchEvent(new Event("change"));
       break;
     case "boards.4chan.org":
     case "boards.4channel.org":
-        var style = document.getElementById("styleSelector");
+      var style = document.getElementById("styleSelector");
+      if(style.value !== "Tomorrow")
+      {
         style.value = "Tomorrow";
         style.dispatchEvent(new Event("change"));
+      }
       break;
     case "docs.microsoft.com":
-        var style = document.getElementsByClassName("toggle-theme")[0];
-        if(style.getAttribute("data-theme-to") === "dark")
-        {
-          style.click();
-        }
-        break;
+      var style = document.getElementsByClassName("toggle-theme")[0];
+      if(style.getAttribute("data-theme-to") === "dark")
+      {
+        style.click();
+      }
+      break;
     case "duckduckgo.com":
-        var current_style = document.getElementsByClassName("nav-menu__theme  js-side-menu-theme theme-is-selected")[0];
-        if(current_style.children[0].children[0].getAttribute("style") !== "background-color:#444;"
-          || current_style.children[0].children[1].getAttribute("style") !== "background-color:#222;")
+      var current_style = document.getElementsByClassName("nav-menu__theme  js-side-menu-theme theme-is-selected")[0];
+      if(current_style.children[0].children[0].getAttribute("style") !== "background-color:#444;"
+        || current_style.children[0].children[1].getAttribute("style") !== "background-color:#222;")
+      {
+        var style = null;
+        var styles = document.getElementsByClassName("nav-menu__theme  js-side-menu-theme");
+        for(var ticker = 0; ticker < styles.length && style === null; ticker++)
         {
-          var style = null;
-          var styles = document.getElementsByClassName("nav-menu__theme  js-side-menu-theme");
-          for(var ticker = 0; ticker < styles.length && style === null; ticker++)
+          if(styles[ticker].children[0].children[0].getAttribute("style") === "background-color:#444;"
+            && styles[ticker].children[0].children[1].getAttribute("style") === "background-color:#222;")
           {
-            if(styles[ticker].children[0].children[0].getAttribute("style") === "background-color:#444;"
-              && styles[ticker].children[0].children[1].getAttribute("style") === "background-color:#222;")
-            {
-               style = styles[ticker];
-            }
+             style = styles[ticker];
           }
-          style.click();
         }
+        style.click();
+      }
       break;
     case "endchan.org":
       chooseStyle("Darkend", "color");
