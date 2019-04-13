@@ -28,7 +28,7 @@
 // @match http://www.youtube.com/*
 // @match https://www.youtube.com/*
 // @grant none
-// @version 0.1.002
+// @version 0.1.003
 // @updateURL https://raw.githubusercontent.com/matoro/tomorrow-theme/master/tomorrow-theme.user.js
 // ==/UserScript==
  
@@ -107,6 +107,8 @@ window.onload = function() {
     case "youtu.be":
     case "youtube.com":
     case "www.youtube.com":
+      document.documentElement.setAttribute("dark", true);
+      document.documentElement.dispatchEvent(new Event("change"));
       break;
     default:
       break;
