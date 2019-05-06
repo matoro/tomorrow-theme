@@ -17,6 +17,8 @@
 // @match https://duckduckgo.com/*
 // @match http://endchan.org/*
 // @match https://endchan.org/*
+// @match http://gamefaqs.gamespot.com/*
+// @match https://gamefaqs.gamespot.com/*
 // @match http://tvtropes.org/*
 // @match https://tvtropes.org/*
 // @match http://wizchan.org/*
@@ -28,7 +30,7 @@
 // @match http://www.youtube.com/*
 // @match https://www.youtube.com/*
 // @grant none
-// @version 0.1.003
+// @version 0.1.004
 // @updateURL https://raw.githubusercontent.com/matoro/tomorrow-theme/master/tomorrow-theme.user.js
 // ==/UserScript==
  
@@ -91,6 +93,13 @@ window.onload = function() {
       break;
     case "endchan.org":
       chooseStyle("Darkend", "color");
+      break;
+    case "gamefaqs.gamespot.com":
+      var style = document.cookie.match(new RegExp("(^| )gf_css=([^;]+)"));
+      if(!style || style[2] !== "dark-blue")
+      {
+        document.querySelector("li.footer_color_subnav_item:nth-child(2) > a:nth-child(1)").click();
+      }
       break;
     case "tvtropes.org":
       var style = document.getElementById("sidebar-toggle-nightvision");
