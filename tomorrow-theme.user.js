@@ -30,7 +30,7 @@
 // @match http://www.youtube.com/*
 // @match https://www.youtube.com/*
 // @grant none
-// @version 0.1.004
+// @version 0.1.005
 // @updateURL https://raw.githubusercontent.com/matoro/tomorrow-theme/master/tomorrow-theme.user.js
 // ==/UserScript==
  
@@ -74,22 +74,7 @@ window.onload = function() {
       }
       break;
     case "duckduckgo.com":
-      var current_style = document.getElementsByClassName("nav-menu__theme  js-side-menu-theme theme-is-selected")[0];
-      if(current_style.children[0].children[0].getAttribute("style") !== "background-color:#444;"
-        || current_style.children[0].children[1].getAttribute("style") !== "background-color:#222;")
-      {
-        var style = null;
-        var styles = document.getElementsByClassName("nav-menu__theme  js-side-menu-theme");
-        for(var ticker = 0; ticker < styles.length && style === null; ticker++)
-        {
-          if(styles[ticker].children[0].children[0].getAttribute("style") === "background-color:#444;"
-            && styles[ticker].children[0].children[1].getAttribute("style") === "background-color:#222;")
-          {
-             style = styles[ticker];
-          }
-        }
-        style.click();
-      }
+      DDG.settings.set("kae", "d");
       break;
     case "endchan.org":
       chooseStyle("Darkend", "color");
