@@ -30,7 +30,7 @@
 // @match http://www.youtube.com/*
 // @match https://www.youtube.com/*
 // @grant none
-// @version 0.1.005
+// @version 0.1.006
 // @updateURL https://raw.githubusercontent.com/matoro/tomorrow-theme/master/tomorrow-theme.user.js
 // ==/UserScript==
  
@@ -67,10 +67,10 @@ window.onload = function() {
       }
       break;
     case "docs.microsoft.com":
-      var style = document.getElementsByClassName("toggle-theme")[0];
-      if(style.getAttribute("data-theme-to") === "dark")
+      if(!document.documentElement.classList.contains("theme-dark"))
       {
-        style.click();
+        document.documentElement.classList.remove("theme-light");
+        document.documentElement.classList.add("theme-dark");
       }
       break;
     case "duckduckgo.com":
