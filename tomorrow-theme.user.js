@@ -30,7 +30,7 @@
 // @match http://www.youtube.com/*
 // @match https://www.youtube.com/*
 // @grant none
-// @version 0.1.007
+// @version 0.1.008
 // @updateURL https://raw.githubusercontent.com/matoro/tomorrow-theme/master/tomorrow-theme.user.js
 // ==/UserScript==
  
@@ -101,7 +101,7 @@ window.onload = function() {
     case "youtu.be":
     case "youtube.com":
     case "www.youtube.com":
-      for(var i = 0; i < 4; i++)
+      for(var i = 0; i < 20; i++)
       {
         window.setTimeout(function() {
             document.documentElement.setAttribute("dark", true);
