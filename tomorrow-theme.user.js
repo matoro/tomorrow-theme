@@ -5,32 +5,21 @@
 // @namespace Violentmonkey Scripts
 // @downloadURL https://raw.githubusercontent.com/matoro/tomorrow-theme/master/tomorrow-theme.user.js
 // @license GPLv3 - https://www.gnu.org/licenses/gpl-3.0.txt
-// @match http://8ch.net/*
-// @match https://8ch.net/*
-// @match http://boards.4chan.org/*
-// @match https://boards.4chan.org/*
-// @match http://boards.4channel.org/*
-// @match https://boards.4channel.org/*
-// @match http://docs.microsoft.com/*
-// @match https://docs.microsoft.com/*
-// @match http://duckduckgo.com/*
-// @match https://duckduckgo.com/*
-// @match http://endchan.org/*
-// @match https://endchan.org/*
-// @match http://gamefaqs.gamespot.com/*
-// @match https://gamefaqs.gamespot.com/*
-// @match http://tvtropes.org/*
-// @match https://tvtropes.org/*
-// @match http://wizchan.org/*
-// @match https://wizchan.org/*
-// @match http://youtu.be/*
-// @match https://youtu.be/*
-// @match http://youtube.com/*
-// @match https://youtube.com/*
-// @match http://www.youtube.com/*
-// @match https://www.youtube.com/*
+// @match *://8ch.net/*
+// @match *://boards.4chan.org/*
+// @match *://boards.4channel.org/*
+// @match *://docs.microsoft.com/*
+// @match *://duckduckgo.com/*
+// @match *://endchan.org/*
+// @match *://gamefaqs.gamespot.com/*
+// @match *://tvtropes.org/*
+// @match *://videocardz.com/*
+// @match *://wizchan.org/*
+// @match *://youtu.be/*
+// @match *://youtube.com/*
+// @match *://www.youtube.com/*
 // @grant none
-// @version 0.1.008
+// @version 0.1.009
 // @updateURL https://raw.githubusercontent.com/matoro/tomorrow-theme/master/tomorrow-theme.user.js
 // ==/UserScript==
  
@@ -92,6 +81,9 @@ window.onload = function() {
       {
         style.click();
       }
+      break;
+    case "videocardz.com":
+      document.body.parentElement.setAttribute("data-theme", "dark");
       break;
     case "wizchan.org":
       var style = document.getElementById("style-select");
