@@ -53,6 +53,7 @@ window.onload = function() {
       {
         style.value = "Tomorrow";
         style.dispatchEvent(new Event("change"));
+        style.dispatchEvent(new Event("change"));
       }
       break;
     case "docs.microsoft.com":
