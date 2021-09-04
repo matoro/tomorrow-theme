@@ -19,7 +19,7 @@
 // @match *://youtube.com/*
 // @match *://www.youtube.com/*
 // @grant none
-// @version 0.1.009
+// @version 0.1.010
 // @updateURL https://raw.githubusercontent.com/matoro/tomorrow-theme/master/tomorrow-theme.user.js
 // ==/UserScript==
  
@@ -38,71 +38,72 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-window.onload = function() {
-  switch(window.location.hostname)
+window.addEventListener("load", function()
   {
-    case "8ch.net":
-      var style = document.getElementById("stylechooser");
-      style.value = "Tomorrow";
-      style.dispatchEvent(new Event("change"));
-      break;
-    case "boards.4chan.org":
-    case "boards.4channel.org":
-      var style = document.getElementById("styleSelector");
-      if(style.value !== "Tomorrow")
-      {
+    switch(window.location.hostname)
+    {
+      case "8ch.net":
+        var style = document.getElementById("stylechooser");
         style.value = "Tomorrow";
         style.dispatchEvent(new Event("change"));
-        style.dispatchEvent(new Event("change"));
-      }
-      break;
-    case "docs.microsoft.com":
-      if(!document.documentElement.classList.contains("theme-dark"))
-      {
-        document.documentElement.classList.remove("theme-light");
-        document.documentElement.classList.add("theme-dark");
-      }
-      break;
-    case "duckduckgo.com":
-      DDG.settings.set("kae", "d");
-      break;
-    case "endchan.org":
-      chooseStyle("Darkend", "color");
-      break;
-    case "gamefaqs.gamespot.com":
-      var style = document.cookie.match(new RegExp("(^| )gf_css=([^;]+)"));
-      if(!style || style[2] !== "dark-blue")
-      {
-        document.querySelector("li.footer_color_subnav_item:nth-child(2) > a:nth-child(1)").click();
-      }
-      break;
-    case "tvtropes.org":
-      var style = document.getElementById("sidebar-toggle-nightvision");
-      if(!Array.from(style.classList).includes("active"))
-      {
-        style.click();
-      }
-      break;
-    case "videocardz.com":
-      document.body.parentElement.setAttribute("data-theme", "dark");
-      break;
-    case "wizchan.org":
-      var style = document.getElementById("style-select");
-      style.childNodes.value = "10";
-      style.childNodes[1].dispatchEvent(new Event("change"));
-      break;
-    case "youtu.be":
-    case "youtube.com":
-    case "www.youtube.com":
-      for(var i = 0; i < 20; i++)
-      {
-        window.setTimeout(function() {
-            document.documentElement.setAttribute("dark", true);
-            document.documentElement.dispatchEvent(new Event("change"));
-        }, i * 250);
-      }
-      break;
-    default:
-      break;
+        break;
+      case "boards.4chan.org":
+      case "boards.4channel.org":
+        var style = document.getElementById("styleSelector");
+        if(style.value !== "Tomorrow")
+        {
+          style.value = "Tomorrow";
+          style.dispatchEvent(new Event("change"));
+        }
+        break;
+      case "docs.microsoft.com":
+        if(!document.documentElement.classList.contains("theme-dark"))
+        {
+          document.documentElement.classList.remove("theme-light");
+          document.documentElement.classList.add("theme-dark");
+        }
+        break;
+      case "duckduckgo.com":
+        DDG.settings.set("kae", "d");
+        break;
+      case "endchan.org":
+        chooseStyle("Darkend", "color");
+        break;
+      case "gamefaqs.gamespot.com":
+        var style = document.cookie.match(new RegExp("(^| )gf_css=([^;]+)"));
+        if(!style || style[2] !== "dark-blue")
+        {
+          document.querySelector("li.footer_color_subnav_item:nth-child(2) > a:nth-child(1)").click();
+        }
+        break;
+      case "tvtropes.org":
+        var style = document.getElementById("sidebar-toggle-nightvision");
+        if(!Array.from(style.classList).includes("active"))
+        {
+          style.click();
+        }
+        break;
+      case "videocardz.com":
+        document.body.parentElement.setAttribute("data-theme", "dark");
+        break;
+      case "wizchan.org":
+        var style = document.getElementById("style-select");
+        style.childNodes.value = "10";
+        style.childNodes[1].dispatchEvent(new Event("change"));
+        break;
+      case "youtu.be":
+      case "youtube.com":
+      case "www.youtube.com":
+        for(var i = 0; i < 20; i++)
+        {
+          window.setTimeout(function() {
+              document.documentElement.setAttribute("dark", true);
+              document.documentElement.dispatchEvent(new Event("change"));
+          }, i * 250);
+        }
+        break;
+      default:
+        break;
+    }
   }
-}
+);
