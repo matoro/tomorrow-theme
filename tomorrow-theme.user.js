@@ -12,6 +12,7 @@
 // @match *://duckduckgo.com/*
 // @match *://endchan.org/*
 // @match *://gamefaqs.gamespot.com/*
+// @match *://nyaa.si/*
 // @match *://tvtropes.org/*
 // @match *://videocardz.com/*
 // @match *://wizchan.org/*
@@ -19,7 +20,7 @@
 // @match *://youtube.com/*
 // @match *://www.youtube.com/*
 // @grant none
-// @version 0.1.010
+// @version 0.1.011
 // @updateURL https://raw.githubusercontent.com/matoro/tomorrow-theme/master/tomorrow-theme.user.js
 // ==/UserScript==
  
@@ -74,6 +75,12 @@ window.addEventListener("load", function()
         if(!style || style[2] !== "dark-blue")
         {
           document.querySelector("li.footer_color_subnav_item:nth-child(2) > a:nth-child(1)").click();
+        }
+        break;
+      case "nyaa.si":
+        if(!document.body.classList.contains("dark"))
+        {
+          document.getElementById("themeToggle").click();
         }
         break;
       case "tvtropes.org":
