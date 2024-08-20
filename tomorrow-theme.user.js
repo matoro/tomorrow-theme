@@ -10,6 +10,7 @@
 // @match *://boards.4channel.org/*
 // @match *://docs.microsoft.com/*
 // @match *://duckduckgo.com/*
+// @match *://en.wikipedia.org/*
 // @match *://endchan.org/*
 // @match *://gamefaqs.gamespot.com/*
 // @match *://nyaa.si/*
@@ -20,10 +21,10 @@
 // @match *://youtube.com/*
 // @match *://www.youtube.com/*
 // @grant none
-// @version 0.1.011
+// @version 0.1.012
 // @updateURL https://raw.githubusercontent.com/matoro/tomorrow-theme/master/tomorrow-theme.user.js
 // ==/UserScript==
- 
+
 /**
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,6 +39,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+
+function waitForElm(selector) {
+    return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+                observer.disconnect();
+                resolve(document.querySelector(selector));
+            }
+        });
+
+        // If you get "parameter 1 is not of type 'Node'" error, see https://stackoverflow.com/a/77855838/492336
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+}
 
 window.addEventListener("load", function()
   {
@@ -66,6 +88,9 @@ window.addEventListener("load", function()
         break;
       case "duckduckgo.com":
         DDG.settings.set("kae", "d");
+        break;
+      case "en.wikipedia.org":
+        waitForElm("#skin-client-pref-skin-theme-value-night").then((elm) => { elm.click(); });
         break;
       case "endchan.org":
         chooseStyle("Darkend", "color");
